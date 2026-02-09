@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secret Valentine 💘</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 120px;
+    }
+    .box {
+      background: white;
+      width: 320px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    input {
+      padding: 10px;
+      width: 80%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff3366;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #content {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box" id="lock">
+    <h2>🔐 Secret Page</h2>
+    <p>Password therinja mattum open 😌</p>
+    <input type="password" id="pwd" placeholder="Enter password">
+    <br>
+    <button onclick="check()">Unlock 💖</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <div class="box" id="content">
+    <h1>Hey You ❤️</h1>
+    <p>Nee than en favorite notification 💫</p>
+    <p>Valentine’s Day mattum illa…  
+       every day unakku than 🌹</p>
+  </div>
+
+  <script>
+    function check() {
+      const password = "love123";  // 🔑 inga password change pannalaam
+      const entered = document.getElementById("pwd").value;
+
+      if (entered === password) {
+        document.getElementById("lock").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      } else {
+        document.getElementById("error").innerText = "Wrong password 😜";
+      }
+    }
+  </script>
+
+</body>
+</html>
