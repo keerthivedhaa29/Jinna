@@ -2,43 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<title> HEY MY BESTEST FRIEND ❤️</title>
+
 <style>
-  body{
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-    text-align:center;
-    padding:40px;
-  }
-  .page{ display:none; }
-  .box{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    max-width:350px;
-    margin:auto;
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
-  }
-  button{
-    padding:10px 20px;
-    border:none;
-    border-radius:20px;
-    font-size:16px;
-    margin:10px;
-    cursor:pointer;
-    background:#ff3366;
-    color:white;
-  }
-  #yesBtn{ font-size:18px; }
-  img{
-    width:100%;
-    border-radius:15px;
-    margin-top:10px;
-  }
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #fff;
+  text-align: center;
+}
+
+.box {
+  background: rgba(0,0,0,0.55);
+  padding: 25px;
+  margin: 80px auto;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 20px;
+}
+
+input, button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  cursor: pointer;
+}
 </style>
 </head>
+
 <body>
-  
+
 <!-- PAGE 1 : PASSWORD -->
 <div class="box" id="page1">
   <h2>🔐 Secret Page</h2>
@@ -51,40 +50,42 @@
 <!-- PAGE 2 : VALENTINE -->
 <div class="box" id="page2" style="display:none">
   <h2>Will you be my Valentine? 💘</h2>
-  <button onclick="yesClick()" id="yesBtn">YES 😍</button>
-  <button onclick="noClick()" id="noBtn">NO 🙄</button>
+  <button id="yesBtn" onclick="yesClick()">YES 😍</button>
+  <button onclick="noClick()">NO 🙄</button>
 </div>
-  
+
 <!-- PAGE 2.5 : PRANK -->
 <div class="box" id="pagePrank" style="display:none">
-  <h2>😏 Wait wait...</h2>
+  <h2>😏 Wait…</h2>
   <p>Serious ah YES click pannina?</p>
   <button onclick="prankYes()">Yes serious 😌</button>
   <button onclick="prankNo()">Accidentally 😳</button>
 </div>
-  
+
 <!-- PAGE 3 : MEMORIES -->
 <div class="box" id="page3" style="display:none">
-  <h2>Our Cute Memories 🥺❤️</h2>
-  <p>Smiles, laughs, silly moments… everything feels special 💫</p>
-
-  <!-- OPTIONAL PHOTO -->
-  <!-- Replace link with your photo URL -->
-  <img src="https://i.imgur.com/2yaf2wb.png">
-
-  <br><br>
-  <button onclick="nextPage()">Next ➡️</button>
+  <h2>Little Memories 💫</h2>
+  <p>
+    From random chats to silent smiles,<br>
+    from silly fights to instant laughs,<br>
+    every small moment felt special.<br>
+    Time slowed down when you were around.<br>
+    Somehow, everything felt… right 🥺❤️
+  </p>
+  <br>
+  <button onclick="endPage()">END</button>
 </div>
 
 <!-- PAGE 4 : FINAL -->
 <div class="box" id="page4" style="display:none">
-  <h1>❤️ I LOVE YOU ❤️</h1>
-  <p>Always & forever 🌸</p>
+  <h1>❤️ I LOVE YOU THANGAMEYY❤️</h1>
+  <p>More than words can explain 🌸</p>
 </div>
 
 <script>
-  let attempts = 0;
+let attempts = 0;
 const correctPwd = "bamblimass"; // CHANGE PASSWORD HERE
+let yesSize = 1;
 
 function checkPwd() {
   const val = document.getElementById("pwd").value;
@@ -92,42 +93,48 @@ function checkPwd() {
   if (val === correctPwd) {
     page1.style.display = "none";
     page2.style.display = "block";
-    document.getElementById("hint").innerText = "";
+    hint.innerText = "";
     attempts = 0;
   } else {
     attempts++;
-
     if (attempts === 1 || attempts === 2) {
       hint.innerText = "Wrong password 😜 Try again";
-    }
-    else if (attempts === 3) {
+    } else if (attempts === 3) {
       hint.innerText = "Clue 1: you are given the name";
-    }
-    else if (attempts === 4) {
+    } else if (attempts === 4) {
       hint.innerText = "Clue 2: you are given the name for what you like the most in me";
-    }
-    else {
-      hint.innerText = "kandupudichiya ilaya";
+    } else {
+      hint.innerText = "inuma kandu pudikura 😌";
     }
   }
 }
 
-  let yesSize = 1;
+function noClick() {
+  yesSize += 0.3;
+  document.getElementById("yesBtn").style.transform =
+    `scale(${yesSize})`;
+}
 
-  function noClick() {
-    yesSize += 0.3;
-    document.getElementById("yesBtn").style.transform = `scale(${yesSize})`;
-  }
+function yesClick() {
+  page2.style.display = "none";
+  pagePrank.style.display = "block";
+}
 
-  function yesClick() {
-    page2.style.display = "none";
-    page3.style.display = "block";
-  }
+function prankYes() {
+  pagePrank.style.display = "none";
+  page3.style.display = "block";
+}
 
-  function nextPage() {
-    page3.style.display = "none";
-    page4.style.display = "block";
-  }
+function prankNo() {
+  alert("Poi solla venam 😏");
+  pagePrank.style.display = "none";
+  page3.style.display = "block";
+}
+
+function endPage() {
+  page3.style.display = "none";
+  page4.style.display = "block";
+}
 </script>
 
 </body>
