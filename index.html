@@ -2,76 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Secret Valentine 💘</title>
+  <title>For You ❤️</title>
   <style>
     body {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 120px;
-    }
-    .box {
-      background: white;
-      width: 320px;
-      margin: auto;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
-    input {
-      padding: 10px;
-      width: 80%;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-top: 10px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      background: #ff3366;
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: url("https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif") no-repeat center center fixed;
+      background-size: cover;
       color: white;
+      text-align: center;
+    }
+
+    .box {
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      margin: 60px auto;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 20px;
+    }
+
+    input, button {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin: 10px;
       font-size: 16px;
+    }
+
+    button {
       cursor: pointer;
     }
-    #content {
-      display: none;
+
+    #noBtn {
+      position: relative;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
+
+<!-- PAGE 1 : PASSWORD -->
+<div class="box" id="page1">
+  <h2>🔐 Secret Page</h2>
+  <input type="password" id="pwd" placeholder="Enter password">
+  <br>
+  <button onclick="checkPwd()">Enter</button>
+  <p id="hint"></p>
+</div>
+
+<!-- PAGE 2 : VALENTINE -->
+<div class="box" id="page2" style="display:none">
+  <h2>Will you be my Valentine? 💘</h2>
+  <button onclick="yesClick()" id="yesBtn">YES 😍</button>
+  <button onclick="noClick()" id="noBtn">NO 🙄</button>
+</div>
   
-  <div id="loginBox" style="text-align:center; margin-top:100px;">
-  <h2>Enter Password 🔐</h2>
-  <input type="password" id="password" placeholder="Password">
+<!-- PAGE 2.5 : PRANK -->
+<div class="box" id="pagePrank" style="display:none">
+  <h2>😏 Wait wait...</h2>
+  <p>Serious ah YES click pannina?</p>
+  <button onclick="prankYes()">Yes serious 😌</button>
+  <button onclick="prankNo()">Accidentally 😳</button>
+</div>
+  
+<!-- PAGE 3 : MEMORIES -->
+<div class="box" id="page3" style="display:none">
+  <h2>Our Cute Memories 🥺❤️</h2>
+  <p>Smiles, laughs, silly moments… everything feels special 💫</p>
+
+  <!-- OPTIONAL PHOTO -->
+  <!-- Replace link with your photo URL -->
+  <img src="https://i.imgur.com/2yaf2wb.png">
+
   <br><br>
-  <button onclick="checkPassword()">Submit</button>
-  <p id="message"></p>
-  <p id="clue" style="display:none;color:red;font-weight:bold;">
-    💡 Clue: You are given the name that you most like in me 😉
-  </p>
-  </div>
-  
-  <div class="box" id="content">
-    <h1>Hey My best friend ❤️</h1>
-    <p>Ne ilama en day start um illa…  
-       Endum ila 🌹</p>
-  </div>
+  <button onclick="nextPage()">Next ➡️</button>
+</div>
 
-  <script>
-    function check() {
-      const password = "bamblimass";  // 🔑 inga password change pannalaam
-      const entered = document.getElementById("pwd").value;
+<!-- PAGE 4 : FINAL -->
+<div class="box" id="page4" style="display:none">
+  <h1>❤️ I LOVE YOU ❤️</h1>
+  <p>Always & forever 🌸</p>
+</div>
 
-      if (entered === password) {
-        document.getElementById("lock").style.display = "none";
-        document.getElementById("content").style.display = "block";
-      } else {
-        document.getElementById("error").innerText = "Wrong password 😜";
-      }
+<script>
+  let attempts = 0;
+const correctPwd = "bamblimass"; // CHANGE PASSWORD HERE
+
+function checkPwd() {
+  const val = document.getElementById("pwd").value;
+
+  if (val === correctPwd) {
+    page1.style.display = "none";
+    page2.style.display = "block";
+    document.getElementById("hint").innerText = "";
+    attempts = 0;
+  } else {
+    attempts++;
+
+    if (attempts === 1 || attempts === 2) {
+      hint.innerText = "Wrong password 😜 Try again";
     }
-  </script>
+    else if (attempts === 3) {
+      hint.innerText = "Clue 1: you are given the name";
+    }
+    else if (attempts === 4) {
+      hint.innerText = "Clue 2: you are given the name for what you like the most in me";
+    }
+    else {
+      hint.innerText = "kandupudichiya ilaya";
+    }
+  }
+}
+
+  let yesSize = 1;
+
+  function noClick() {
+    yesSize += 0.3;
+    document.getElementById("yesBtn").style.transform = `scale(${yesSize})`;
+  }
+
+  function yesClick() {
+    page2.style.display = "none";
+    page3.style.display = "block";
+  }
+
+  function nextPage() {
+    page3.style.display = "none";
+    page4.style.display = "block";
+  }
+</script>
 
 </body>
 </html>
